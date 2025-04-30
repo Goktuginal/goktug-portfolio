@@ -1,0 +1,278 @@
+// Variables
+$primary-color: #1a365d;
+$secondary-color: #4299e1;
+$text-color: #2d3748;
+$light-color: #ffffff;
+$section-bg: #f8fafc;
+$card-bg: $light-color;
+$progress-bg: #e2e8f0;
+$transition: all 0.3s ease;
+$border-radius: 8px;
+
+.skills-section {
+  padding: 100px 0;
+  background-color: $section-bg;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h2 {
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 20px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+
+      &:after {
+        content: '';
+        width: 70px;
+        height: 3px;
+        background-color: $secondary-color;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+  }
+
+  // Skills container
+  .skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Skills category
+  .skills-category {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: $transition;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+
+      .category-icon {
+        background-color: $secondary-color;
+        color: $light-color;
+        transform: rotateY(180deg);
+      }
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+
+      .category-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: rgba($secondary-color, 0.1);
+        color: $secondary-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-right: 20px;
+        transition: all 0.5s ease;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: $primary-color;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .skill-item {
+      .skill-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .skill-name {
+          font-weight: 500;
+          color: $text-color;
+        }
+
+        .skill-percentage {
+          color: $secondary-color;
+          font-weight: 600;
+        }
+      }
+
+      .skill-progress {
+        height: 8px;
+        background-color: $progress-bg;
+        border-radius: 10px;
+        overflow: hidden;
+
+        .progress-bar {
+          height: 100%;
+          background: linear-gradient(to right, $secondary-color, lighten($secondary-color, 10%));
+          border-radius: 10px;
+          width: 0;
+          transition: width 1.5s ease-in-out;
+        }
+      }
+
+      &:hover {
+        .skill-name {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  // Additional skills section
+  .other-skills {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 40px;
+
+    h3 {
+      font-size: 1.5rem;
+      color: $primary-color;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+
+      .skill-tag {
+        padding: 8px 16px;
+        background: rgba($secondary-color, 0.1);
+        color: $secondary-color;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: $transition;
+
+        &:hover {
+          background: $secondary-color;
+          color: $light-color;
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+}
+
+// Animation for progress bars
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.skills-category {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.2}s;
+    }
+  }
+}
+
+// Add JavaScript to animate progress bars on scroll
+// This will be handled in the component's TypeScript file
+// The code will add a class to show the progress bars when they come into view
+.skill-progress.animate .progress-bar {
+  width: var(--percent);
+}
+
+// Media queries for responsive design
+@media (max-width: 768px) {
+  .skills-section {
+    .skills-container {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-category {
+      padding: 25px;
+
+      .category-header {
+        .category-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .other-skills {
+      padding: 25px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .skills-section {
+    padding: 80px 0;
+
+    .section-header {
+      h2 {
+        font-size: 2rem;
+      }
+    }
+
+    .skills-category {
+      .category-header {
+        flex-direction: column;
+        text-align: center;
+
+        .category-icon {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}

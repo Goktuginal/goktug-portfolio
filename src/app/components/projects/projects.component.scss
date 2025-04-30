@@ -1,0 +1,163 @@
+// Variables
+$primary-color: #1a365d;
+$secondary-color: #4299e1;
+$text-color: #2d3748;
+$light-color: #ffffff;
+$section-bg: #f8fafc;
+$card-bg: $light-color;
+$transition: all 0.3s ease;
+$border-radius: 8px;
+
+.projects-section {
+  padding: 80px 0;
+  background-color: $section-bg;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+    
+    h2 {
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #64748b;
+    }
+  }
+  
+  // Projects grid
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+  }
+  
+  // Project card
+  .project-card {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: $transition;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      
+      .project-image img {
+        transform: scale(1.05);
+      }
+    }
+    
+    .project-image {
+      height: 200px;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+    }
+    
+    .project-content {
+      padding: 20px;
+      
+      h3 {
+        font-size: 1.2rem;
+        color: $primary-color;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      
+      p {
+        color: $text-color;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+        
+        .tech-tag {
+          padding: 4px 10px;
+          background: rgba($secondary-color, 0.1);
+          color: $secondary-color;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+      }
+      
+      .project-links {
+        .project-link {
+          display: inline-block;
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 500;
+          font-size: 0.9rem;
+          margin-right: 15px;
+          transition: $transition;
+          
+          &:hover {
+            color: $secondary-color;
+          }
+          
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Simple fade-in animation for project cards
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.project-card {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 60px 0;
+    
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .projects-section {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-header h2 {
+      font-size: 1.8rem;
+    }
+  }
+}

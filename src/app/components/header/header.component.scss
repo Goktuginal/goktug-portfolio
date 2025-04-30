@@ -1,0 +1,306 @@
+// Variables
+$primary-color: #1a365d;
+$secondary-color: #4299e1;
+$text-color: #ffffff;
+$hover-color: #63b3ed;
+$transition-speed: 0.3s;
+$header-height: 70px;
+$header-height-mobile: 60px;
+$box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+// Header Container
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $header-height;
+  background-color: $primary-color;
+  color: $text-color;
+  z-index: 1000;
+  transition: all $transition-speed ease;
+  box-shadow: $box-shadow;
+  
+  // Scrolled state (can be toggled via JavaScript)
+  &.scrolled {
+    background-color: rgba($primary-color, 0.95);
+    height: $header-height - 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    .logo {
+      transform: scale(0.9);
+    }
+    
+    nav {
+      padding-top: 0;
+    }
+  }
+  
+  // Container for content
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  // Logo Styling
+  .logo {
+    display: flex;
+    align-items: center;
+    transition: transform $transition-speed ease;
+    
+    img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0;
+      white-space: nowrap;
+      
+      span {
+        color: $secondary-color;
+        font-weight: 400;
+      }
+    }
+  }
+  
+  // Navigation
+  nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: padding $transition-speed ease;
+    
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      
+      li {
+        margin: 0 1rem;
+        position: relative;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+        
+        a {
+          color: $text-color;
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: 500;
+          transition: color $transition-speed ease;
+          padding: 0.5rem 0;
+          position: relative;
+          
+          &:hover {
+            color: $hover-color;
+          }
+          
+          &::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: $secondary-color;
+            transition: width $transition-speed ease;
+          }
+          
+          &:hover::after,
+          &.active::after {
+            width: 100%;
+          }
+          
+          &.active {
+            color: $secondary-color;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+  
+  // Contact button - special styling for last nav item
+  .contact-button {
+    background-color: $secondary-color;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: background-color $transition-speed;
+    font-weight: 500;
+    
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+      color: white;
+    }
+    
+    &::after {
+      display: none; // Remove underline effect for button
+    }
+  }
+  
+  // Mobile menu toggle
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $text-color;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+// Responsive Styles
+@media (max-width: 991px) {
+  header {
+    height: $header-height-mobile;
+    
+    .container {
+      padding: 0 1.5rem;
+    }
+    
+    .logo h1 {
+      font-size: 1.3rem;
+    }
+    
+    // Show mobile toggle
+    .mobile-toggle {
+      display: block;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 80%;
+      max-width: 320px;
+      background-color: $primary-color;
+      flex-direction: column;
+      justify-content: center;
+      transition: right $transition-speed ease;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      
+      &.show {
+        right: 0;
+      }
+      
+      ul {
+        flex-direction: column;
+        width: 100%;
+        
+        li {
+          margin: 1rem 0;
+          width: 100%;
+          text-align: center;
+          
+          a {
+            display: block;
+            padding: 0.75rem 0;
+            font-size: 1.1rem;
+            
+            &::after {
+              bottom: -5px;
+            }
+          }
+        }
+      }
+      
+      .contact-button {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1.5rem;
+      }
+    }
+  }
+}
+
+// Smaller screens adjustment
+@media (max-width: 576px) {
+  header {
+    .container {
+      padding: 0 1rem;
+    }
+    
+    .logo {
+      img {
+        height: 30px;
+      }
+      
+      h1 {
+        font-size: 1.1rem;
+      }
+    }
+    
+    nav {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+// Dark mode support (optional)
+@media (prefers-color-scheme: dark) {
+  header {
+    &.transparent {
+      background-color: rgba(0, 0, 0, 0.2);
+      
+      &.scrolled {
+        background-color: rgba($primary-color, 0.95);
+      }
+    }
+  }
+}
+
+// Animations for menu items
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Apply animation to nav items when menu opens
+header nav.show ul li {
+  animation: fadeInDown 0.3s ease forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 7 {
+    &:nth-child(#{$i}) {
+      animation-delay: 0.1s * $i;
+    }
+  }
+}
+
+// Additional class for transparent header (use on homepage)
+header.transparent {
+  background-color: transparent;
+  box-shadow: none;
+  
+  &.scrolled {
+    background-color: rgba($primary-color, 0.95);
+    box-shadow: $box-shadow;
+  }
+}
