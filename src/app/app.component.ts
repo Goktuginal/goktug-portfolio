@@ -11,12 +11,12 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, AboutComponent, HeroComponent, SkillsComponent, FooterComponent, ProjectsComponent, ContactComponent, ExperienceComponent, EducationComponent, CertificationsComponent, RouterOutlet],
+  imports: [FontAwesomeModule, HeaderComponent, AboutComponent, HeroComponent, SkillsComponent, FooterComponent, ProjectsComponent, ContactComponent, ExperienceComponent, EducationComponent, CertificationsComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

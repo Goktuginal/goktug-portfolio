@@ -16,7 +16,7 @@ header {
   width: 100%;
   height: $header-height;
   background-color: $primary-color;
-  color: $text-color;
+  color: rgb(0 0 0 / 83%);
   z-index: 1000;
   transition: all $transition-speed ease;
   box-shadow: $box-shadow;
@@ -59,13 +59,13 @@ header {
     }
     
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.0rem;
       font-weight: 700;
       margin: 0;
       white-space: nowrap;
       
       span {
-        color: $secondary-color;
+        color: #652279d4;
         font-weight: 400;
       }
     }
@@ -102,7 +102,7 @@ header {
           position: relative;
           
           &:hover {
-            color: $hover-color;
+            color: #000000;
           }
           
           &::after {
@@ -112,7 +112,7 @@ header {
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: $secondary-color;
+            background-color: #000000;
             transition: width $transition-speed ease;
           }
           
@@ -122,7 +122,7 @@ header {
           }
           
           &.active {
-            color: $secondary-color;
+            color: #000000;
             font-weight: 600;
           }
         }
@@ -132,7 +132,6 @@ header {
   
   // Contact button - special styling for last nav item
   .contact-button {
-    background-color: $secondary-color;
     color: white;
     padding: 0.5rem 1.25rem;
     border-radius: 4px;
@@ -140,7 +139,7 @@ header {
     font-weight: 500;
     
     &:hover {
-      background-color: darken($secondary-color, 10%);
+      background-color: darken(rgb(168 20 124 / 78%), 10%);
       color: white;
     }
     
@@ -246,7 +245,7 @@ header {
       }
       
       h1 {
-        font-size: 1.1rem;
+        font-size: 0.5rem;
       }
     }
     
@@ -296,11 +295,11 @@ header nav.show ul li {
 
 // Additional class for transparent header (use on homepage)
 header.transparent {
-  background-color: transparent;
+  background-color: #6c00716e;
   box-shadow: none;
   
   &.scrolled {
-    background-color: rgba($primary-color, 0.95);
+    background-color: rgb(93 255 241 / 40%);
     box-shadow: $box-shadow;
   }
 }
